@@ -10,7 +10,7 @@ export default class HomePage extends React.Component<IHomePageProps> {
   public render() {
     return (
       <div>
-            <img className="main-pic" src={url}/>
+            <img alt="" className="main-pic" src={url}/>
       </div>
     );
   }

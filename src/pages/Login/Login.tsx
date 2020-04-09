@@ -4,9 +4,11 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import { IState } from '../../Redux/reducer';
 import { loginAction } from '../../Redux/actions';
+import { Redirect } from 'react-router';
 
 export interface ILoginProps {
     login(userName: string, password: string): void,
+    isLogged:boolean,
 }
 
 interface ILoginState {
@@ -20,7 +22,11 @@ export default class _Login extends React.Component<ILoginProps, ILoginState> {
         password: "",
     }
     public render() {
-        const isFilled = this.canBeLoggedIn()
+        const {isLogged} = this.props
+        const isFilled = this.canBeLoggedIn();
+        if (isLogged) {
+          return  <Redirect to="/jobs" />
+        }
         return (
             <div style={{ margin: "auto", width: "30%", padding: "27px" }}>
                 <Form onSubmit={this.onSubmit}>
@@ -62,14 +68,13 @@ export default class _Login extends React.Component<ILoginProps, ILoginState> {
 
 const mapStateToProps = (state: IState) => {
     return {
-
+        isLogged: state.isLogged
     }
 }
 
 const mapDispatchToProps = {
     login: loginAction,
 }
-
 export const Login = connect(
     mapStateToProps,
     mapDispatchToProps

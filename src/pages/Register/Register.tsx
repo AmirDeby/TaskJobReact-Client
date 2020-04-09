@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { registerAction } from '../../Redux/actions';
 import { IState } from '../../Redux/reducer';
 import '../Register/Register.css';
+import { Redirect } from 'react-router';
 
 export interface IRegisterProps {
     register(firstName: string, lastName: string, userName: string, password: string): void,
+    isLogged: boolean,
 }
 
 interface IRegisterState {
@@ -26,25 +28,29 @@ export default class _Register extends React.Component<IRegisterProps, IRegister
     }
 
     public render() {
+        const { isLogged } = this.props;
         const isFilled = this.canBeRegister();
+        if (isLogged) {
+           return <Redirect to="/jobs" />
+        }
         return (
             <div className="main-div">
                 <Form onSubmit={this.onRegisterSubmit}>
                     <Form.Group>
                         <Form.Label><u>First Name :</u></Form.Label>
-                        <Form.Control onChange={this.handlerOnChange} type="text" name="firstName" placeholder="Enter your First Name" />
+                        <Form.Control style={{ backgroundColor:"#f5f5f580"}} onChange={this.handlerOnChange} type="text" name="firstName" placeholder="Enter your First Name" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label><u>Last Name :</u></Form.Label>
-                        <Form.Control onChange={this.handlerOnChange} type="text" name="lastName" placeholder="Enter your Last Name" />
+                        <Form.Control onChange={this.handlerOnChange} style={{ backgroundColor: "#f5f5f580" }} type="text" name="lastName" placeholder="Enter your Last Name" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label><u>User Name :</u></Form.Label>
-                        <Form.Control onChange={this.handlerOnChange} type="text" name="userName" placeholder="Enter Unique User Name" />
+                        <Form.Control onChange={this.handlerOnChange} style={{ backgroundColor: "#f5f5f580" }} type="text" name="userName" placeholder="Enter Unique User Name" />
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword">
                         <Form.Label><u>Password :</u></Form.Label>
-                        <Form.Control onChange={this.handlerOnChange} type="password" name="password" placeholder="Password" />
+                        <Form.Control onChange={this.handlerOnChange} style={{ backgroundColor: "#f5f5f580" }} type="password" name="password" placeholder="Password" />
                     </Form.Group>
                     <Button disabled={!isFilled} variant="primary" type="submit">
                         Submit
@@ -57,7 +63,7 @@ export default class _Register extends React.Component<IRegisterProps, IRegister
     handlerOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value, name } = e.target;
         this.setState({ [name]: value } as any);
-      
+
     }
 
     canBeRegister = () => {
@@ -85,7 +91,7 @@ export default class _Register extends React.Component<IRegisterProps, IRegister
 
 const mapStateToProps = (state: IState) => {
     return {
-        
+        isLogged: state.isLogged,
     }
 }
 
