@@ -1,13 +1,13 @@
-import * as React from 'react';
-import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import moment from 'moment';
+import * as React from 'react';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
 import { connect } from 'react-redux';
-import { IState } from '../../Redux/reducer';
 import { deleteJobTaskAction, isCompletedAction, isNotComletedAction } from '../../Redux/actions';
-import { ITaskJob } from '../../taskJobModel';
+import { IState } from '../../Redux/reducer';
+import "../JobTask/JobTask.css";
 
 export interface IJobTaskProps {
     id?: number,
@@ -23,6 +23,7 @@ class _JobTask extends React.Component<IJobTaskProps> {
     public render() {
         const { date, description, completed } = this.props
         return (
+            
             <div style={{ padding: "10px", margin: "auto", marginRight: "5px", float: "left" }}>
                 <Card border="secondary" style={{ width: '18rem', backgroundColor: "rgba(214, 214, 39, 0.349)" }}>
                     <Card.Header>{moment(date).format('DD-MM-YYYY')}</Card.Header>
@@ -63,7 +64,7 @@ class _JobTask extends React.Component<IJobTaskProps> {
 
 const mapStateToProps = (state: IState) => {
     return {
-        
+
     }
 }
 const mapDispatchToProps = {

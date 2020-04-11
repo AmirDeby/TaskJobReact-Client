@@ -35,6 +35,7 @@ export default class _AddTask extends React.Component<IAddTaskProps, IAddTaskSta
             return <Redirect to="/login" />
         }
         return (
+            
             <div style={{ margin: "auto", width: "40%", padding: "27px" }}>
                 <Form onSubmit={this.onSubmitTask}>
                     <Form.Group>
