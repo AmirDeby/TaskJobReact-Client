@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { reducer } from './Redux/reducer';
+import { reducer, ActionType } from './Redux/reducer';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
@@ -18,6 +18,14 @@ const store = createStore(reducer, composeWithDevTools(
     applyMiddleware(...middleware),
     // other store enhancers if any
 ));
+
+const token = localStorage.getItem('token');
+if (token) {
+    store.dispatch({
+        type: ActionType.LoginSuccess,
+        payload: {}
+    })
+}
 
 ReactDOM.render(
     <BrowserRouter>

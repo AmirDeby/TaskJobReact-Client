@@ -6,6 +6,39 @@ const getToken = () => {
     return localStorage.getItem('token');
 }
 
+export const isNotComletedAction = (id: number) => {
+    return async (dispatch: Dispatch<IAction>) => {
+        const token = getToken();
+        await axios.put(`http://localhost:4000/job/${id}/togglecomplete`, {}, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        dispatch({
+            type: ActionType.IsNotCompleted,
+            payload: { id }
+        })
+    }
+}
+
+export const isCompletedAction = (id: number) => {
+    return async (dispatch: Dispatch<IAction>) => {
+        const token = getToken();
+        await axios.put(`http://localhost:4000/job/${id}/togglecomplete`, {}, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        dispatch({
+            type: ActionType.IsCompleted,
+            payload: { id }
+        })
+    }
+}
+export const logOutAction = (): IAction => {
+    localStorage.removeItem('token');
+    return {
+        type: ActionType.LogOut,
+        payload: {}
+    }
+}
 export const deleteJobTaskAction = (id: number) => {
     return async (dispatch: Dispatch<IAction>) => {
         const token = getToken();
@@ -25,7 +58,7 @@ export const getTaskJobAction = () => {
         const response = await axios.get('http://localhost:4000/job/', {
             headers: { Authorization: `Bearer ${token}` }
         });
-        console.log(response.data);
+        // console.log(response.data);
         dispatch({
             type: ActionType.GetJobTask,
             payload: response.data

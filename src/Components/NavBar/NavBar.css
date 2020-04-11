@@ -1,0 +1,4 @@
+.nav-deco{
+  background: rgb(245,245,245);
+background: radial-gradient(circle, rgba(245,245,245,0.8664508039543942) 50%, rgb(50, 53, 247) 93%);
+}

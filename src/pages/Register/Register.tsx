@@ -34,7 +34,7 @@ export default class _Register extends React.Component<IRegisterProps, IRegister
            return <Redirect to="/jobs" />
         }
         return (
-            <div className="main-div">
+            <div className="main">
                 <Form onSubmit={this.onRegisterSubmit}>
                     <Form.Group>
                         <Form.Label><u>First Name :</u></Form.Label>
@@ -52,7 +52,7 @@ export default class _Register extends React.Component<IRegisterProps, IRegister
                         <Form.Label><u>Password :</u></Form.Label>
                         <Form.Control onChange={this.handlerOnChange} style={{ backgroundColor: "#f5f5f580" }} type="password" name="password" placeholder="Password" />
                     </Form.Group>
-                    <Button disabled={!isFilled} variant="primary" type="submit">
+                    <Button disabled={!isFilled} variant="light" type="submit">
                         Submit
                     </Button>
                 </Form>

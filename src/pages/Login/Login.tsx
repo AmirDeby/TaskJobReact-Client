@@ -38,7 +38,7 @@ export default class _Login extends React.Component<ILoginProps, ILoginState> {
                         <Form.Label>Password</Form.Label>
                         <Form.Control onChange={this.handlerLoginChange} type="password" name="password" placeholder="Password" />
                     </Form.Group>
-                    <Button disabled={!isFilled} variant="primary" type="submit">
+                    <Button disabled={!isFilled} variant="light" type="submit">
                         Submit
                      </Button>
                 </Form>

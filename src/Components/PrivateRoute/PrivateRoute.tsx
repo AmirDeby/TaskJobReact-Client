@@ -10,8 +10,7 @@ export interface IPrivateRouteProps extends RouteProps {
 export default class _PrivateRoute extends React.Component<IPrivateRouteProps> {
     public render() {
         const { isLogged, ...rest } = this.props;
-        console.log(rest);
-        
+        // console.log(rest);
         if (!isLogged) {
             return <Redirect to='/register' />
         }

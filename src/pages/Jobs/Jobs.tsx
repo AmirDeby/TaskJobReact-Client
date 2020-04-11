@@ -12,7 +12,7 @@ export interface IJobsProps {
     isLogged: boolean,
 }
 
-export default class _Jobs extends React.Component<IJobsProps> {
+class _Jobs extends React.Component<IJobsProps> {
 
     componentDidMount() {
         const { getTaskJob } = this.props;

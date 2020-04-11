@@ -45,9 +45,9 @@ export default class _AddTask extends React.Component<IAddTaskProps, IAddTaskSta
                         <Form.Label>Task Description</Form.Label>
                         <Form.Control onChange={this.onChangeHandler} value={description} name="description" as="textarea" rows="3" />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="dark" type="submit">
                         Save Task
-                </Button>
+                    </Button>
                     {addTaskMessageSuccess ?
                         <div className="txt-msg">
                             <Alert variant="warning">

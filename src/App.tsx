@@ -3,11 +3,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import './App.css';
 import HomePage from './Components/HomePage/HomePage';
-import NavBar from './Components/NavBar/NavBar';
+import {NavBar} from './Components/NavBar/NavBar';
 import { AddTask } from './pages/AddTask/AddTask';
 import {Jobs} from './pages/Jobs/Jobs';
 import { Login } from './pages/Login/Login';
 import { Register } from './pages/Register/Register';
+import { PrivateRoute } from './Components/PrivateRoute/PrivateRoute';
 
 const App: React.FC = () => {
   return (
@@ -23,15 +24,12 @@ const App: React.FC = () => {
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/addtask">
+        <PrivateRoute path="/addtask">
           <AddTask />
-        </Route>
-        <Route path="/jobs">
+        </PrivateRoute>
+        <PrivateRoute path='/jobs'>
           <Jobs />
-        </Route>
-        {/* <PrivateRoute path='/jobs'>
-          <Jobs />
-        </PrivateRoute> */}
+        </PrivateRoute>
         <Route path='/' exact>
           page not found
         </Route>
